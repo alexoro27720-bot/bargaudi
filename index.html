@@ -1,4 +1,3 @@
-HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -228,10 +227,17 @@ HTML
   .tab-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
   
+  /* ESTILOS DE TARJETA Y PRECIOS */
   .plato-card { background: var(--surface2); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 1.75rem; position: relative; }
-  .plato-card h4 { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; color: #fff; margin-bottom: 0.5rem; }
+  .plato-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 0.5rem; }
+  .plato-card h4 { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; color: #fff; margin-bottom: 0; max-width: 75%; }
   .plato-card p { font-size: 0.88rem; color: var(--text-muted); }
-  .popular-tag { position: absolute; top: 1rem; right: 1rem; background: rgba(255,213,79,0.1); border: 1px solid var(--saber-gold); color: var(--saber-gold); font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 3px; font-weight: 700; }
+  .plato-price { font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--saber-blue); text-shadow: 0 0 5px var(--saber-blue); white-space: nowrap; }
+  
+  /* Color rojo para las Burgers Imperiales */
+  #tab-burgers .plato-price { color: var(--saber-red); text-shadow: 0 0 5px var(--saber-red); }
+  
+  .popular-tag { position: absolute; top: -10px; right: 1rem; background: #0c0d12; border: 1px solid var(--saber-gold); color: var(--saber-gold); font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 3px; font-weight: 700; box-shadow: 0 0 8px rgba(255, 213, 79, 0.2); }
 
   /* OPINIONES */
   .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
@@ -290,7 +296,6 @@ HTML
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#inicio" class="nav-logo">BAR GAUDÍ</a>
   <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
@@ -303,7 +308,6 @@ HTML
   </ul>
 </nav>
 
-<!-- HERO -->
 <section id="inicio">
   <div class="hero-bg"></div>
   <div class="hero-content">
@@ -322,7 +326,6 @@ HTML
   </div>
 </section>
 
-<!-- LOCAL -->
 <section id="local">
   <div class="section-inner">
     <div class="local-grid">
@@ -346,7 +349,6 @@ HTML
   </div>
 </section>
 
-<!-- MISIONES -->
 <section id="misiones">
   <div class="section-inner">
     <p class="section-label">Misiones de la Jornada</p>
@@ -372,7 +374,6 @@ HTML
   </div>
 </section>
 
-<!-- CARTA -->
 <section id="carta">
   <div class="section-inner">
     <p class="section-label">Menú de Operaciones</p>
@@ -390,30 +391,48 @@ HTML
     <div id="tab-bravas" class="tab-panel active">
       <div class="plato-card">
         <span class="popular-tag">★ LAS REINAS</span>
-        <h4>Patatas Bravas de la Casa</h4>
+        <div class="plato-header">
+          <h4>Patatas Bravas de la Casa</h4>
+          <span class="plato-price">4,80 €</span>
+        </div>
         <p>Crujientes, doradas a la perfección y bañadas en nuestras exclusivas salsas artesanales con el punto picante justo.</p>
       </div>
       <div class="plato-card">
-        <h4>Patates Braves Tradicionales</h4>
+        <div class="plato-header">
+          <h4>Patates Braves Tradicionales</h4>
+          <span class="plato-price">4,50 €</span>
+        </div>
         <p>Nuestra icónica receta con el toque de la tierra que ha conquistado a todo el barrio de Pardinyes.</p>
       </div>
     </div>
 
     <div id="tab-burgers" class="tab-panel">
       <div class="plato-card">
-        <h4>La Vader Burger</h4>
+        <div class="plato-header">
+          <h4>La Vader Burger</h4>
+          <span class="plato-price">8,90 €</span>
+        </div>
         <p>Potente, jugosa y oscura. Carne seleccionada, queso fundido brutal y nuestra salsa secreta del imperio.</p>
       </div>
       <div class="plato-card">
-        <h4>La Skywalker</h4>
+        <div class="plato-header">
+          <h4>La Skywalker</h4>
+          <span class="plato-price">7,90 €</span>
+        </div>
         <p>Equilibrada y fresca. Una explosión de sabor limpio para los defensores del auténtico buen comer.</p>
       </div>
       <div class="plato-card">
-        <h4>La Mandalorian</h4>
+        <div class="plato-header">
+          <h4>La Mandalorian</h4>
+          <span class="plato-price">8,50 €</span>
+        </div>
         <p>Este es el camino. Doble de bacon crujiente, queso cheddar extra y salsa ahumada para los más duros.</p>
       </div>
       <div class="plato-card">
-        <h4>La Yoda Mini-Burger</h4>
+        <div class="plato-header">
+          <h4>La Yoda Mini-Burger</h4>
+          <span class="plato-price">5,20 €</span>
+        </div>
         <p>No te dejes engañar por el tamaño. Concentración máxima de sabor e ingredientes gourmet sorprendentes.</p>
       </div>
     </div>
@@ -421,60 +440,92 @@ HTML
     <div id="tab-torradas" class="tab-panel">
       <div class="plato-card">
         <span class="popular-tag">★ RECOMENDADO</span>
-        <h4>Torrada de Escalibada Casera</h4>
+        <div class="plato-header">
+          <h4>Torrada de Escalibada Casera</h4>
+          <span class="plato-price">6,80 €</span>
+        </div>
         <p>Gran rebanada de pan de pagès con pimientos y berenjenas asadas al horno con un toque gourmet de anchoas.</p>
       </div>
       <div class="plato-card">
-        <h4>Torrada XXL Lomo y Queso</h4>
+        <div class="plato-header">
+          <h4>Torrada XXL Lomo y Queso</h4>
+          <span class="plato-price">6,20 €</span>
+        </div>
         <p>Un clásico contundente: lomo tierno a la plancha cubierto de una capa infinita de queso fundido.</p>
       </div>
       <div class="plato-card">
-        <h4>Torrada Catalana Especial</h4>
+        <div class="plato-header">
+          <h4>Torrada Catalana Especial</h4>
+          <span class="plato-price">5,50 €</span>
+        </div>
         <p>Pan artesano con tomate maduro restregado, aceite de oliva virgen y los mejores embutidos de proximidad.</p>
       </div>
       <div class="plato-card">
-        <h4>Torrada Salmón & Aguacate</h4>
+        <div class="plato-header">
+          <h4>Torrada Salmón & Aguacate</h4>
+          <span class="plato-price">7,20 €</span>
+        </div>
         <p>La opción más fresca y premium de la carta sobre una tostada crujiente perfecta.</p>
       </div>
     </div>
 
     <div id="tab-tapas" class="tab-panel">
       <div class="plato-card">
-        <h4>Calamares a la Andaluza</h4>
+        <div class="plato-header">
+          <h4>Calamares a la Andaluza</h4>
+          <span class="plato-price">6,50 €</span>
+        </div>
         <p>Rebozado crujiente y ligero con calamar tiernísimo. Un imprescindible para el centro de la mesa.</p>
       </div>
       <div class="plato-card">
-        <h4>Sepia a la Plancha con Alioli</h4>
+        <div class="plato-header">
+          <h4>Sepia a la Plancha con Alioli</h4>
+          <span class="plato-price">7,00 €</span>
+        </div>
         <p>Fresca, cocinada en su punto exacto con ajo, perejil y acompañada de alioli casero.</p>
       </div>
       <div class="plato-card">
-        <h4>Huevos Rotos con Jamón Ibérico</h4>
+        <div class="plato-header">
+          <h4>Huevos Rotos con Jamón Ibérico</h4>
+          <span class="plato-price">8,50 €</span>
+        </div>
         <p>Patatas fritas de verdad, huevos de corral con la yema en su punto y virutas de jamón de calidad.</p>
       </div>
       <div class="plato-card">
-        <h4>Bombas Tigre, Morro y Oreja</h4>
+        <div class="plato-header">
+          <h4>Bombas Tigre, Morro y Oreja</h4>
+          <span class="plato-price">4,90 €</span>
+        </div>
         <p>Nuestras tapas más canallas y tradicionales ideales para disfrutar junto a unas cañas bien tiradas.</p>
       </div>
     </div>
 
     <div id="tab-postres" class="tab-panel">
       <div class="plato-card">
-        <h4>Panna Cotta Galáctica</h4>
+        <div class="plato-header">
+          <h4>Panna Cotta Galáctica</h4>
+          <span class="plato-price">4,00 €</span>
+        </div>
         <p>Suave, cremosa y con un coulis casero de frutos rojos del bosque. El final perfecto.</p>
       </div>
       <div class="plato-card">
-        <h4>Tarta de Queso de la Resistencia</h4>
+        <div class="plato-header">
+          <h4>Tarta de Queso de la Resistencia</h4>
+          <span class="plato-price">4,50 €</span>
+        </div>
         <p>Textura espectacular y horneada al estilo artesanal para los amantes del dulce.</p>
       </div>
       <div class="plato-card">
-        <h4>Ensalada de la Casa</h4>
+        <div class="plato-header">
+          <h4>Ensalada de la Casa</h4>
+          <span class="plato-price">5,00 €</span>
+        </div>
         <p>Mezclum fresco e ingredientes crujientes seleccionados para acompañar tus platos favoritos.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- OPINIONES -->
 <section id="opiniones">
   <div class="section-inner">
     <p class="section-label">Informes de Clientes</p>
@@ -509,7 +560,6 @@ HTML
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer id="contacto">
   <div class="section-inner footer-inner">
     <div class="footer-grid">

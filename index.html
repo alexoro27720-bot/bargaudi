@@ -11,7 +11,7 @@ HTML
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
   
   <style>
-    /* VARIABLES Y TEMAS (Sables Láser) */
+    /* VARIABLES Y TEMAS */
     :root {
       --bg-space: #06070d;
       --card-bg: rgba(20, 24, 46, 0.6);
@@ -19,7 +19,7 @@ HTML
       --saber-red: #ff2a5f;
       --text-main: #f0f3f8;
       --text-muted: #a0a7b5;
-      --gold: #ffe81f; /* Amarillo Star Wars original */
+      --gold: #ffe81f;
     }
 
     /* RESET GENERAL */
@@ -27,6 +27,7 @@ HTML
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
@@ -35,7 +36,6 @@ HTML
       color: var(--text-main);
       overflow-x: hidden;
       line-height: 1.6;
-      /* Efecto de fondo estrellado sutil */
       background-image: 
         radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
         radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
@@ -43,30 +43,88 @@ HTML
       background-position: 0 0, 40px 60px;
     }
 
-    /* CABECERA / HERO */
-    header {
+    /* BARRA DE NAVEGACIÓN COMPLETA */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(6, 7, 13, 0.95);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+      padding: 0.8rem 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-container {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 15px;
+      list-style: none;
+    }
+
+    .nav-tabs a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .nav-tabs a:hover {
+      color: var(--saber-blue);
+      text-shadow: 0 0 8px var(--saber-blue);
+      background: rgba(0, 240, 255, 0.05);
+    }
+
+    /* SECCIÓN INICIO / HERO */
+    .hero-section {
       text-align: center;
-      padding: 3rem 1rem 2rem 1rem;
-      position: relative;
+      padding: 4rem 1rem 3rem 1rem;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
     .logo-sw {
       font-family: 'Orbitron', sans-serif;
       font-weight: 900;
-      font-size: 2.8rem;
+      font-size: 3.8rem;
       color: var(--gold);
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       line-height: 1;
       margin-bottom: 0.5rem;
-      text-shadow: 0 0 10px rgba(255, 232, 31, 0.3);
+      text-shadow: 0 0 20px rgba(255, 232, 31, 0.5);
     }
 
     .subtitle-bar {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       color: var(--saber-blue);
-      letter-spacing: 4px;
+      letter-spacing: 6px;
       text-transform: uppercase;
       margin-bottom: 2rem;
     }
@@ -78,7 +136,8 @@ HTML
       align-items: center;
       gap: 10px;
       margin: 1.5rem auto;
-      max-width: 300px;
+      width: 100%;
+      max-width: 320px;
     }
 
     .saber-blade {
@@ -104,6 +163,53 @@ HTML
       border-radius: 2px;
     }
 
+    .welcome-box {
+      background: linear-gradient(135deg, rgba(20, 24, 46, 0.8), rgba(6, 7, 13, 0.8));
+      border: 1px solid rgba(255, 232, 31, 0.25);
+      border-radius: 12px;
+      padding: 1.8rem;
+      max-width: 500px;
+      margin-top: 1.5rem;
+      text-align: center;
+      box-shadow: 0 0 25px rgba(255, 232, 31, 0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .welcome-box p {
+      font-size: 1.1rem;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    .welcome-box p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* BOTÓN DE ACCIÓN ACCESO DIRECTO */
+    .cta-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      background: transparent;
+      color: var(--saber-blue);
+      border: 1px solid var(--saber-blue);
+      font-family: 'Orbitron', sans-serif;
+      padding: 0.6rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn:hover {
+      background: var(--saber-blue);
+      color: var(--bg-space);
+      box-shadow: 0 0 15px var(--saber-blue);
+    }
+
     /* CONTENEDOR PRINCIPAL Y CARTA */
     main {
       max-width: 600px;
@@ -113,12 +219,12 @@ HTML
 
     .section-title {
       font-family: 'Orbitron', sans-serif;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       color: var(--gold);
       text-transform: uppercase;
-      margin: 2.5rem 0 1.5rem 0;
+      margin: 4rem 0 1.5rem 0;
       border-left: 4px solid var(--saber-blue);
-      padding-left: 10px;
+      padding-left: 12px;
       letter-spacing: 1px;
     }
 
@@ -203,7 +309,7 @@ HTML
 
     .info-footer {
       text-align: center;
-      margin-top: 2rem;
+      margin-top: 3rem;
       font-size: 0.9rem;
       color: var(--text-muted);
     }
@@ -218,18 +324,33 @@ HTML
       font-weight: bold;
     }
 
-    /* ADAPTACIÓN MÓVIL EXTREMA */
-    @media (max-width: 400px) {
-      .logo-sw { font-size: 2.2rem; }
-      .subtitle-bar { font-size: 1rem; }
-      .item-name { font-size: 1rem; }
-      .item-price { font-size: 1rem; }
+    /* RESPONSIVE MÓVIL */
+    @media (max-width: 440px) {
+      .logo-sw { font-size: 2.8rem; }
+      .subtitle-bar { font-size: 1.1rem; letter-spacing: 4px; }
+      .nav-logo { display: none; } /* Oculta logo pequeño en móviles muy chicos para dar espacio */
+      .nav-container { justify-content: center; }
+      .nav-tabs { gap: 12px; }
+      .nav-tabs a { font-size: 0.8rem; padding: 4px; }
     }
   </style>
 </head>
 <body>
 
-  <header>
+  <!-- BARRA NAV SUPERIOR FLOTANTE -->
+  <nav>
+    <div class="nav-container">
+      <a href="#inicio" class="nav-logo">GAUDÍ</a>
+      <ul class="nav-tabs">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#carta">La Carta</a></li>
+        <li><a href="#local">El Local</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PANTALLA COMPLETA DE INICIO (HERO) -->
+  <section class="hero-section" id="inicio">
     <div class="logo-sw">Gaudí</div>
     <div class="subtitle-bar">Bar Galáctico</div>
     
@@ -239,9 +360,17 @@ HTML
       <div class="saber-blade red"></div>
       <div class="saber-hilt"></div>
     </div>
-  </header>
 
-  <main>
+    <div class="welcome-box">
+      <p>🚀 ¡Te damos la bienvenida a nuestra cantina del barrio de Pardinyes!</p>
+      <p style="font-size: 0.95rem; color: var(--text-muted);">Explora una galaxia de sabores únicos con nuestras tapas caseras, hamburguesas legendarias y torradas XXL hechas con el poder de la Fuerza.</p>
+      <a href="#carta" class="cta-btn">Abrir Carta</a>
+    </div>
+  </section>
+
+  <!-- CONTENIDO DE LA CARTA -->
+  <main id="carta">
+    
     <!-- SECCIÓN DE TAPAS -->
     <h2 class="section-title">Para Empezar la Misión</h2>
     <div class="menu-card">
@@ -318,8 +447,8 @@ HTML
       </div>
     </div>
 
-    <!-- SECCIÓN EL LOCAL / MAPA -->
-    <h2 class="section-title">El Cuartel General</h2>
+    <!-- SECCIÓN EL LOCAL -->
+    <h2 class="section-title" id="local">El Cuartel General</h2>
     <div class="menu-card">
       <p class="item-desc" style="margin-bottom: 1rem; text-align: center;">
         Ven a visitarnos al barrio de Pardinyes y disfruta de nuestra ambientación exclusiva.

@@ -1,406 +1,556 @@
+HTML
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bar Gaudí - Carta Galáctica</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-space: #06070d;
-            --card-bg: rgba(20, 24, 46, 0.6);
-            --saber-blue: #00f0ff;
-            --saber-red: #ff2a5f;
-            --text-main: #f0f3f8;
-            --text-muted: #a0a7b5;
-            --gold: #ffe81f;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bar Gaudí | Lleida</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --space: #0b0c10;
+    --space2: #0f1117;
+    --surface: #13151c;
+    --surface2: #1a1d27;
+    --saber-blue: #00e5ff;
+    --saber-red: #ff1744;
+    --saber-gold: #ffd54f;
+    --text: #ffffff;
+    --text-muted: #c5c6c7;
+    --text-dim: #8892a4;
+    --border: rgba(0, 229, 255, 0.15);
+  }
+  
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  
+  /* FONDO DE ESTRELLAS MEJORADO (Garantizado que se ve en cualquier navegador) */
+  body {
+    background: var(--space);
+    background-image: 
+      radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+      radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+      radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+    background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+    background-position: 0 0, 40px 60px, 130px 270px, 70px 150px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  /* NAV CON SABLE DE LUZ AZUL INFERIOR */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(11,12,16,0.95);
+    backdrop-filter: blur(12px);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 66px;
+  }
+  /* El Sable Láser del Menú */
+  nav::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 5%; width: 90%;
+    height: 3px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #fff, 0 0 15px var(--saber-blue), 0 0 25px var(--saber-blue);
+  }
+  
+  .nav-logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 0 0 8px var(--saber-blue);
+    letter-spacing: 0.05em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--saber-blue); text-shadow: 0 0 5px var(--saber-blue); }
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
 
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: var(--bg-space);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-            background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
-            background-size: 550px 550px, 350px 350px;
-            background-position: 0 0, 40px 60px;
-            padding-bottom: 60px;
-        }
+  /* SECTIONS */
+  section { position: relative; z-index: 1; }
 
-        header {
-            text-align: center;
-            padding: 3rem 1rem 2rem 1rem;
-        }
+  /* HERO */
+  #inicio {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 7rem 2rem 4rem;
+    position: relative;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.1) 0%, transparent 60%);
+    z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+  .hero-eyebrow {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--saber-blue);
+    text-shadow: 0 0 5px var(--saber-blue);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.8rem);
+    font-weight: 900;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+  h1 span { color: var(--saber-blue); text-shadow: 0 0 10px rgba(0, 229, 255, 0.5); }
+  .hero-sub {
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto 2.5rem;
+  }
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3.5rem; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.8rem 1.8rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: #fff;
+    color: #0b0c10;
+    box-shadow: 0 0 15px #fff, 0 0 25px var(--saber-blue);
+  }
+  .btn-primary:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 20px #fff, 0 0 35px var(--saber-blue);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid rgba(255,255,255,0.3);
+  }
+  .btn-outline:hover {
+    border-color: var(--saber-blue);
+    color: var(--saber-blue);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+  }
+  .hero-chips { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .chip {
+    background: rgba(19, 21, 28, 0.8);
+    border: 1px solid var(--border);
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+  }
 
-        .logo-sw {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 3.5rem;
-            color: var(--gold);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            line-height: 0.9;
-            margin-bottom: 0.5rem;
-            text-shadow: 0 0 25px rgba(255, 232, 31, 0.6);
-        }
+  /* BLOQUES GENERALES */
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-label {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--saber-blue);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  h2 { font-family: 'Orbitron', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; margin-bottom: 1rem; }
+  .divider { width: 50px; height: 3px; background: var(--saber-blue); box-shadow: 0 0 8px var(--saber-blue); margin-bottom: 2.5rem; }
 
-        .subtitle-bar {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.2rem;
-            color: var(--saber-blue);
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
-        }
+  /* LOCAL */
+  #local { background: rgba(15, 17, 23, 0.9); border-top: 1px solid rgba(255,255,255,0.05); }
+  .local-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .local-img {
+    border-radius: 8px;
+    aspect-ratio: 4/3;
+    background: linear-gradient(135deg, #13151c 0%, #202430 100%);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.05);
+  }
+  .local-img-inner { font-family: 'Orbitron', sans-serif; font-size: 5rem; color: var(--saber-blue); opacity: 0.2; text-shadow: 0 0 10px var(--saber-blue); }
+  .local-text p { color: var(--text-muted); margin-bottom: 1.5rem; }
+  .badges { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+  .badge { background: rgba(0, 229, 255, 0.08); border: 1px solid rgba(0, 229, 255, 0.2); color: var(--saber-blue); padding: 0.4rem 1rem; border-radius: 4px; font-size: 0.8rem; }
 
-        .saber-divider {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            margin: 1rem auto;
-            width: 100%;
-            max-width: 300px;
-        }
+  /* MISIONES */
+  .misiones-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .mision-card { background: rgba(19, 21, 28, 0.85); border: 1px solid var(--border); border-radius: 8px; padding: 2.5rem 1.5rem; transition: all 0.2s; }
+  .mision-card:hover { border-color: var(--saber-blue); box-shadow: 0 0 15px rgba(0, 229, 255, 0.2); transform: translateY(-3px); }
+  .mision-icon { font-size: 2rem; margin-bottom: 1rem; display: block; }
+  .mision-card h3 { font-family: 'Orbitron', sans-serif; color: #fff; margin-bottom: 0.75rem; font-size: 1rem; }
+  .mision-card p { color: var(--text-muted); font-size: 0.9rem; }
 
-        .saber-blade {
-            height: 4px;
-            flex-grow: 1;
-            border-radius: 4px;
-        }
+  /* CARTA */
+  #carta { background: rgba(15, 17, 23, 0.9); }
+  .carta-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem; }
+  .tab-btn {
+    background: rgba(11,12,16,0.6); border: 1px solid rgba(255,255,255,0.1);
+    color: var(--text-dim); padding: 0.6rem 1.3rem; border-radius: 4px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .tab-btn.active, .tab-btn:hover { border-color: var(--saber-blue); color: var(--saber-blue); background: rgba(0, 229, 255, 0.05); box-shadow: 0 0 10px rgba(0, 229, 255, 0.1); }
+  
+  .tab-panel { display: none; animation: fadeIn 0.3s ease; }
+  .tab-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+  
+  .plato-card { background: var(--surface2); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 1.75rem; position: relative; }
+  .plato-card h4 { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; color: #fff; margin-bottom: 0.5rem; }
+  .plato-card p { font-size: 0.88rem; color: var(--text-muted); }
+  .popular-tag { position: absolute; top: 1rem; right: 1rem; background: rgba(255,213,79,0.1); border: 1px solid var(--saber-gold); color: var(--saber-gold); font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 3px; font-weight: 700; }
 
-        .saber-blade.blue {
-            background-color: #fff;
-            box-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
-        }
+  /* OPINIONES */
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .review-card { background: rgba(19, 21, 28, 0.85); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 1.75rem; }
+  .stars { color: var(--saber-gold); margin-bottom: 1rem; }
+  .review-text { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-bottom: 1.5rem; }
+  .review-author { display: flex; align-items: center; gap: 0.75rem; }
+  .avatar { width: 36px; height: 36px; border-radius: 50%; background: rgba(0,229,255,0.1); border: 1px solid var(--saber-blue); display: flex; align-items: center; justify-content: center; font-family: 'Orbitron', sans-serif; color: var(--saber-blue); font-size: 0.75rem; font-weight: 700; }
+  .author-info p { font-size: 0.85rem; font-weight: 600; }
+  .author-info span { font-size: 0.75rem; color: var(--text-dim); }
 
-        .saber-blade.red {
-            background-color: #fff;
-            box-shadow: 0 0 10px #ff2a5f, 0 0 20px #ff2a5f;
-        }
+  /* FOOTER CON SABLE DE LUZ ROJO SUPERIOR (Lado Oscuro) */
+  footer {
+    background: #07080a;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+    padding-top: 2rem;
+  }
+  /* El Sable Láser del Footer */
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 10%; width: 80%;
+    height: 3px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 8px #fff, 0 0 15px var(--saber-red), 0 0 25px var(--saber-red);
+  }
+  
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+  .footer-brand p { font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; }
+  .footer-col h4 { font-family: 'Orbitron', sans-serif; color: var(--saber-blue); font-size: 0.8rem; margin-bottom: 1.25rem; letter-spacing: 0.1em; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .footer-col ul li a { color: var(--saber-blue); text-decoration: none; }
+  .footer-note { font-size: 0.75rem; color: var(--text-dim); }
+  
+  .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding: 1.5rem 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { font-size: 0.8rem; color: var(--text-dim); }
+  .footer-credits { display: flex; gap: 1.5rem; font-size: 0.8rem; color: var(--text-dim); }
+  .saber-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; vertical-align: middle; margin-right: 4px; }
+  .dot-blue { background: var(--saber-blue); box-shadow: 0 0 8px var(--saber-blue); }
+  .dot-red { background: var(--saber-red); box-shadow: 0 0 8px var(--saber-red); }
 
-        .saber-hilt {
-            width: 12px;
-            height: 6px;
-            background: #999;
-            border-radius: 2px;
-        }
-
-        /* SISTEMA DE PESTAÑAS (TABS) ORIGINAL */
-        .tabs-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 2rem;
-            padding: 0 1rem;
-        }
-
-        .tab-button {
-            background: rgba(20, 24, 46, 0.8);
-            border: 1px solid rgba(0, 240, 255, 0.3);
-            color: var(--text-muted);
-            font-family: 'Orbitron', sans-serif;
-            padding: 0.6rem 1.2rem;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            cursor: pointer;
-            border-radius: 6px;
-            transition: all 0.3s ease;
-        }
-
-        .tab-button:hover {
-            color: var(--saber-blue);
-            border-color: var(--saber-blue);
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
-        }
-
-        .tab-button.active {
-            color: var(--bg-space);
-            background: var(--saber-blue);
-            border-color: var(--saber-blue);
-            box-shadow: 0 0 15px var(--saber-blue);
-        }
-
-        /* CONTENEDOR DE VENTANAS */
-        main {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .window-content {
-            display: none; /* Ocultas por defecto */
-        }
-
-        .window-content.active {
-            display: block; /* Solo se muestra la activa */
-            animation: fadeIn 0.4s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .menu-card {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 14px;
-            padding: 1.8rem;
-            backdrop-filter: blur(8px);
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        /* ESTRUCTURA DE PLATOS CON PRECIO ALINEADO */
-        .menu-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1.8rem;
-            padding-bottom: 12px;
-            border-bottom: 1px dashed rgba(240, 243, 248, 0.12);
-        }
-
-        .menu-item:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-        }
-
-        .item-info {
-            padding-right: 20px;
-        }
-
-        .item-name {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 0.3rem;
-        }
-
-        .item-desc {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .item-price {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--saber-blue);
-            white-space: nowrap;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
-        }
-
-        /* CAMBIO DE COLOR PARA BURGERS (LADO OSCURO) */
-        .tab-button.dark-side.active {
-            background: var(--saber-red);
-            border-color: var(--saber-red);
-            box-shadow: 0 0 15px var(--saber-red);
-        }
-
-        .menu-card.empire {
-            border-color: rgba(255, 42, 95, 0.25);
-        }
-
-        .menu-card.empire .item-price {
-            color: var(--saber-red);
-            text-shadow: 0 0 8px rgba(255, 42, 95, 0.3);
-        }
-
-        .local-box {
-            background: var(--card-bg);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            border-radius: 14px;
-            padding: 1.8rem;
-            text-align: center;
-        }
-
-        .local-img {
-            width: 100%;
-            height: 200px;
-            border: 2px dashed rgba(0, 240, 255, 0.3);
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 240, 255, 0.01);
-            margin-top: 1.5rem;
-        }
-
-        .local-img-inner {
-            font-family: 'Orbitron', sans-serif;
-            color: var(--saber-blue);
-            opacity: 0.7;
-            text-shadow: 0 0 12px var(--saber-blue);
-        }
-
-        .info-footer {
-            text-align: center;
-            margin-top: 3rem;
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .phone-link {
-            color: var(--gold);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        @media (max-width: 480px) {
-            .logo-sw { font-size: 2.5rem; }
-            .tabs-container { flex-wrap: wrap; gap: 8px; }
-            .tab-button { flex-grow: 1; text-align: center; padding: 0.5rem; font-size: 0.75rem; }
-            .menu-item { flex-direction: column; }
-            .item-price { margin-top: 0.5rem; }
-        }
-    </style>
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .nav-links { display: none; flex-direction: column; position: absolute; top: 66px; left: 0; right: 0; background: rgba(11,12,16,0.98); padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border); }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: block; }
+    .local-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .local-img { order: -1; aspect-ratio: 16/9; }
+    .misiones-grid, .reviews-grid, .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+  }
+</style>
 </head>
 <body>
 
-    <header>
-        <h1 class="logo-sw">Gaudí</h1>
-        <div class="subtitle-bar">Bar Galáctico</div>
-        
-        <div class="saber-divider">
-            <div class="saber-hilt"></div>
-            <div class="saber-blade blue"></div>
-            <div class="saber-blade red"></div>
-            <div class="saber-hilt"></div>
-        </div>
-    </header>
+<!-- NAV -->
+<nav>
+  <a href="#inicio" class="nav-logo">BAR GAUDÍ</a>
+  <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  <ul class="nav-links">
+    <li><a href="#inicio" onclick="document.querySelector('.nav-links').classList.remove('open')">Inicio</a></li>
+    <li><a href="#local" onclick="document.querySelector('.nav-links').classList.remove('open')">El Local</a></li>
+    <li><a href="#carta" onclick="document.querySelector('.nav-links').classList.remove('open')">Carta Galáctica</a></li>
+    <li><a href="#opiniones" onclick="document.querySelector('.nav-links').classList.remove('open')">Opiniones</a></li>
+    <li><a href="#contacto" onclick="document.querySelector('.nav-links').classList.remove('open')">Contacto</a></li>
+  </ul>
+</nav>
 
-    <!-- LOS BOTONES DE TUS PESTAÑAS ORIGINALES -->
-    <div class="tabs-container">
-        <button class="tab-button active" onclick="openWindow('tapas')">Tapas</button>
-        <button class="tab-button dark-side" onclick="openWindow('burgers')">Burgers</button>
-        <button class="tab-button" onclick="openWindow('torradas')">Torradas</button>
-        <button class="tab-button" onclick="openWindow('local')">El Local</button>
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">✦ LLEIDA · PARDINYES · EL LADO OSCURO DEL SABOR</p>
+    <h1>Bar Gaudí | <span>Que el buen tapeo</span> te acompañe</h1>
+    <p class="hero-sub">Las mejores hamburguesas temáticas de Star Wars, torradas XXL caseras y patatas bravas icónicas de Lleida. Un rincón con auténtico carisma en el corazón de Pardinyes.</p>
+    <div class="btn-group">
+      <a href="#carta" class="btn btn-primary">Ver la Carta Galáctica</a>
+      <a href="tel:973654162" class="btn btn-outline">📞 Reservar · 973 65 41 62</a>
+    </div>
+    <div class="hero-chips">
+      <span class="chip">📍 Corregidor Escofet, 72</span>
+      <span class="chip">☀️ Terraza Exterior</span>
+      <span class="chip">⚽ Fútbol en Directo</span>
+    </div>
+  </div>
+</section>
+
+<!-- LOCAL -->
+<section id="local">
+  <div class="section-inner">
+    <div class="local-grid">
+      <div class="local-img">
+        <div class="local-img-inner">★</div>
+      </div>
+      <div class="local-text">
+        <p class="section-label">El Local</p>
+        <h2>Un templo gastronómico con fuerza propia</h2>
+        <div class="divider"></div>
+        <p>En Bar Gaudí fusionamos lo mejor de los bares tradicionales (la cercanía, las raciones abundantes y el producto fresco) con nuestra gran pasión por el universo de las galaxias. Diseñado para que te sientas como en casa.</p>
+        <p>Estamos totalmente equipados para recibir a todo el mundo: contamos con accesos adaptados para sillas de ruedas y cómodas tronas para los pequeños padawans de la familia.</p>
+        <div class="badges">
+          <span class="badge">Terraza</span>
+          <span class="badge">Accesible</span>
+          <span class="badge">Tronas</span>
+          <span class="badge">Zona Pardinyes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISIONES -->
+<section id="misiones">
+  <div class="section-inner">
+    <p class="section-label">Misiones de la Jornada</p>
+    <h2>Gastronomía para cualquier hora</h2>
+    <div class="divider"></div>
+    <div class="misiones-grid">
+      <div class="mision-card">
+        <span class="mision-icon">☕</span>
+        <h3>Desayunos de Fuerza</h3>
+        <p>Cafés perfectos, bocadillos calientes crujientes y tostadas hechas al momento para empezar el día con el pie derecho.</p>
+      </div>
+      <div class="mision-card">
+        <span class="mision-icon">🍔</span>
+        <h3>Almuerzos y Cenas</h3>
+        <p>Nuestras famosas hamburguesas y tapas estelares listas para conquistar los paladares más exigentes de Lleida.</p>
+      </div>
+      <div class="mision-card">
+        <span class="mision-icon">🍻</span>
+        <h3>Tardeo & Partidazos</h3>
+        <p>La combinación definitiva: pantallas para ver el fútbol en directo acompañadas de una buena cerveza fría.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CARTA -->
+<section id="carta">
+  <div class="section-inner">
+    <p class="section-label">Menú de Operaciones</p>
+    <h2>Carta Galáctica</h2>
+    <div class="divider"></div>
+    
+    <div class="carta-tabs">
+      <button class="tab-btn active" onclick="switchTab(this, 'bravas')">Patatas Bravas</button>
+      <button class="tab-btn" onclick="switchTab(this, 'burgers')">Burgers Temáticas</button>
+      <button class="tab-btn" onclick="switchTab(this, 'torradas')">Torradas XXL</button>
+      <button class="tab-btn" onclick="switchTab(this, 'tapas')">Tapas y Platillos</button>
+      <button class="tab-btn" onclick="switchTab(this, 'postres')">Postres y Más</button>
     </div>
 
-    <main>
-        <!-- VENTANA 1: TAPAS -->
-        <div id="tapas" class="window-content active">
-            <div class="menu-card">
-                <div class="menu-item">
-                    <div class="item-info">
-                        <div class="item-name">Patatas Estrelladas Gaudí</div>
-                        <div class="item-desc">Nuestras bravas caseras con salsa secreta de otra galaxia. Las favoritas de los stormtroopers.</div>
-                    </div>
-                    <div class="item-price">4,80 €</div>
-                </div>
-                <div class="menu-item">
-                    <div class="item-info">
-                        <div class="item-name">Torreznos de la Alianza</div>
-                        <div class="item-desc">Crujientes, sabrosos y cortados a mano. Energía pura para el hiperespacio.</div>
-                    </div>
-                    <div class="item-price">5,50 €</div>
-                </div>
-                <div class="menu-item">
-                    <div class="item-info">
-                        <div class="item-name">Croquetas Coruscant</div>
-                        <div class="item-desc">De jamón ibérico o pollo rustido, cremosas por dentro y crujientes por fuera. (4 unidades).</div>
-                    </div>
-                    <div class="item-price">4,50 €</div>
-                </div>
-            </div>
+    <div id="tab-bravas" class="tab-panel active">
+      <div class="plato-card">
+        <span class="popular-tag">★ LAS REINAS</span>
+        <h4>Patatas Bravas de la Casa</h4>
+        <p>Crujientes, doradas a la perfección y bañadas en nuestras exclusivas salsas artesanales con el punto picante justo.</p>
+      </div>
+      <div class="plato-card">
+        <h4>Patates Braves Tradicionales</h4>
+        <p>Nuestra icónica receta con el toque de la tierra que ha conquistado a todo el barrio de Pardinyes.</p>
+      </div>
+    </div>
+
+    <div id="tab-burgers" class="tab-panel">
+      <div class="plato-card">
+        <h4>La Vader Burger</h4>
+        <p>Potente, jugosa y oscura. Carne seleccionada, queso fundido brutal y nuestra salsa secreta del imperio.</p>
+      </div>
+      <div class="plato-card">
+        <h4>La Skywalker</h4>
+        <p>Equilibrada y fresca. Una explosión de sabor limpio para los defensores del auténtico buen comer.</p>
+      </div>
+      <div class="plato-card">
+        <h4>La Mandalorian</h4>
+        <p>Este es el camino. Doble de bacon crujiente, queso cheddar extra y salsa ahumada para los más duros.</p>
+      </div>
+      <div class="plato-card">
+        <h4>La Yoda Mini-Burger</h4>
+        <p>No te dejes engañar por el tamaño. Concentración máxima de sabor e ingredientes gourmet sorprendentes.</p>
+      </div>
+    </div>
+
+    <div id="tab-torradas" class="tab-panel">
+      <div class="plato-card">
+        <span class="popular-tag">★ RECOMENDADO</span>
+        <h4>Torrada de Escalibada Casera</h4>
+        <p>Gran rebanada de pan de pagès con pimientos y berenjenas asadas al horno con un toque gourmet de anchoas.</p>
+      </div>
+      <div class="plato-card">
+        <h4>Torrada XXL Lomo y Queso</h4>
+        <p>Un clásico contundente: lomo tierno a la plancha cubierto de una capa infinita de queso fundido.</p>
+      </div>
+      <div class="plato-card">
+        <h4>Torrada Catalana Especial</h4>
+        <p>Pan artesano con tomate maduro restregado, aceite de oliva virgen y los mejores embutidos de proximidad.</p>
+      </div>
+      <div class="plato-card">
+        <h4>Torrada Salmón & Aguacate</h4>
+        <p>La opción más fresca y premium de la carta sobre una tostada crujiente perfecta.</p>
+      </div>
+    </div>
+
+    <div id="tab-tapas" class="tab-panel">
+      <div class="plato-card">
+        <h4>Calamares a la Andaluza</h4>
+        <p>Rebozado crujiente y ligero con calamar tiernísimo. Un imprescindible para el centro de la mesa.</p>
+      </div>
+      <div class="plato-card">
+        <h4>Sepia a la Plancha con Alioli</h4>
+        <p>Fresca, cocinada en su punto exacto con ajo, perejil y acompañada de alioli casero.</p>
+      </div>
+      <div class="plato-card">
+        <h4>Huevos Rotos con Jamón Ibérico</h4>
+        <p>Patatas fritas de verdad, huevos de corral con la yema en su punto y virutas de jamón de calidad.</p>
+      </div>
+      <div class="plato-card">
+        <h4>Bombas Tigre, Morro y Oreja</h4>
+        <p>Nuestras tapas más canallas y tradicionales ideales para disfrutar junto a unas cañas bien tiradas.</p>
+      </div>
+    </div>
+
+    <div id="tab-postres" class="tab-panel">
+      <div class="plato-card">
+        <h4>Panna Cotta Galáctica</h4>
+        <p>Suave, cremosa y con un coulis casero de frutos rojos del bosque. El final perfecto.</p>
+      </div>
+      <div class="plato-card">
+        <h4>Tarta de Queso de la Resistencia</h4>
+        <p>Textura espectacular y horneada al estilo artesanal para los amantes del dulce.</p>
+      </div>
+      <div class="plato-card">
+        <h4>Ensalada de la Casa</h4>
+        <p>Mezclum fresco e ingredientes crujientes seleccionados para acompañar tus platos favoritos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OPINIONES -->
+<section id="opiniones">
+  <div class="section-inner">
+    <p class="section-label">Informes de Clientes</p>
+    <h2>La voz de la Resistencia</h2>
+    <div class="divider"></div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Maravillosa cocina, elaborada por un profesional equipo de jóvenes restauradores."</p>
+        <div class="review-author">
+          <div class="avatar">ER</div>
+          <div class="author-info"><p>Enric Ribera</p><span>Local Guide · Google</span></div>
         </div>
-
-        <!-- VENTANA 2: BURGERS -->
-        <div id="burgers" class="window-content">
-            <div class="menu-card empire">
-                <div class="menu-item">
-                    <div class="item-info">
-                        <div class="item-name">La Darth Vader Burger</div>
-                        <div class="item-desc">180g de ternera de Lleida, queso cheddar fundido, bacon crujiente, cebolla caramelizada y salsa barbacoa negra.</div>
-                    </div>
-                    <div class="item-price">8,90 €</div>
-                </div>
-                <div class="menu-item">
-                    <div class="item-info">
-                        <div class="item-name">La Skywalker Chicken</div>
-                        <div class="item-desc">Pechuga de pollo crujiente al estilo Kentucky, lechuga fresca, tomate, queso emmental y mayonesa suave de ajo tierno.</div>
-                    </div>
-                    <div class="item-price">7,90 €</div>
-                </div>
-                <div class="menu-item">
-                    <div class="item-info">
-                        <div class="item-name">Yoda Veggie</div>
-                        <div class="item-desc">Medallón de proteína vegetal de la huerta, queso de cabra, pimientos del piquillo confitados y rúcula fresca.</div>
-                    </div>
-                    <div class="item-price">8,20 €</div>
-                </div>
-            </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Sus bravas, brutales. No hay otra forma de describirlas. Salsas 100% caseras y propias."</p>
+        <div class="review-author">
+          <div class="avatar">VB</div>
+          <div class="author-info"><p>vayaBravas</p><span>Crítico Gastronómico</span></div>
         </div>
-
-        <!-- VENTANA 3: TORRADAS -->
-        <div id="torradas" class="window-content">
-            <div class="menu-card">
-                <div class="menu-item">
-                    <div class="item-info">
-                        <div class="item-name">La Halcón Milenario</div>
-                        <div class="item-desc">Gran rebanada de pan de payés tostado con base de tomate restregado, escalivada casera de la casa y anchoas del Cantábrico.</div>
-                    </div>
-                    <div class="item-price">6,80 €</div>
-                </div>
-                <div class="menu-item">
-                    <div class="item-info">
-                        <div class="item-name">Torrada Tatooine</div>
-                        <div class="item-desc">Pan de payés con base de alioli suave, gírgolas a la plancha y virutas de jamón serrano del bueno.</div>
-                    </div>
-                    <div class="item-price">6,20 €</div>
-                </div>
-            </div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">"Hacen unas hamburguesas de lujo y unas patatas bravas de escándalo. Un sitio con mucho carisma por Star Wars."</p>
+        <div class="review-author">
+          <div class="avatar">EM</div>
+          <div class="author-info"><p>Esther Miguel</p><span>Opinión Certificada</span></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- VENTANA 4: EL LOCAL -->
-        <div id="local" class="window-content">
-            <div class="local-box">
-                <p class="item-desc">Ven a visitarnos al barrio de Pardinyes y disfruta de nuestra ambientación exclusiva.</p>
-                <div class="local-img">
-                    <div class="local-img-inner">[ Foto del Local ]</div>
-                </div>
-            </div>
-        </div>
+<!-- FOOTER -->
+<footer id="contacto">
+  <div class="section-inner footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#inicio" class="nav-logo">BAR GAUDÍ</a>
+        <p>Tu punto de encuentro en Pardinyes. Pasión por la cocina casera, el buen ambiente de barrio y las mejores historias de la galaxia.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Ubicación y Contacto</h4>
+        <ul>
+          <li>📍 Carrer del Corregidor Escofet, 72<br>25005 Lleida</li>
+          <li class="footer-note">Aparcamiento gratuito en la zona.</li>
+          <li style="margin-top:1rem">📞 Teléfono: <a href="tel:973654162">973 65 41 62</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Operaciones</h4>
+        <ul>
+          <li>🕐 Abierto todos los días<br>Hasta las 23:30 h</li>
+          <li style="margin-top:1rem">♿ Local Adaptado</li>
+          <li>👶 Tronas para Bebés</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Bar Gaudí · Lleida. Todos los derechos reservados.</p>
+      <div class="footer-credits">
+        <span><span class="saber-dot dot-blue"></span> Lado Luminoso</span>
+        <span><span class="saber-dot dot-red"></span> Lado Oscuro</span>
+      </div>
+    </div>
+  </div>
+</footer>
 
-        <footer class="info-footer">
-            <p>📍 Calle de San Salvador, Lleida (Barrio Pardinyes)</p>
-            <p>📞 Reservas: <a href="tel:973654162" class="phone-link">973 65 41 62</a></p>
-        </footer>
-    </main>
-
-    <!-- EL SCRIPT EXACTO QUE HACE QUE FUNCIONEN LAS VENTANAS -->
-    <script>
-        function openWindow(windowId) {
-            // 1. Ocultar todas las ventanas
-            const windows = document.querySelectorAll('.window-content');
-            windows.forEach(win => win.classList.remove('active'));
-
-            // 2. Desactivar todos los botones
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
-
-            // 3. Mostrar la ventana elegida
-            document.getElementById(windowId).classList.add('active');
-
-            // 4. Marcar como activo el botón pulsado
-            event.currentTarget.classList.add('active');
-        }
-    </script>
+<script>
+function switchTab(btn, id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+</script>
 </body>
 </html>

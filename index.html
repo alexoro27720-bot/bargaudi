@@ -295,6 +295,21 @@
 </style>
 </head>
 <body>
+  <body>
+<script>
+  (function() {
+    var passwordCorrecta = "BarGaudi2010.sa"; 
+    var intento = prompt("Acceso exclusivo para Bar Gaudí. Introduce la clave de la demo:");
+    
+    if (intento !== passwordCorrecta) {
+      alert("Clave incorrecta. Access denegado.");
+      document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20vh; font-family:sans-serif;'>Acceso Restringido - Versión de Demostración</h1>";
+      window.stop();
+    }
+  })();
+</script>
+
+<nav>
 
 <nav>
   <a href="#inicio" class="nav-logo">BAR GAUDÍ</a>

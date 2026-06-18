@@ -23,12 +23,12 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   
-  /* FONDO DE ESTRELLAS MEJORADO (Garantizado que se ve en cualquier navegador) */
+  /* FONDO DE ESTRELLAS MEJORADO */
   body {
     background: var(--space);
     background-image: 
       radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-      radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+      radial-gradient(white, rgba(255,255,255,.1) 1px, transparent 30px),
       radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
       radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
     background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
@@ -53,7 +53,6 @@
     justify-content: space-between;
     height: 66px;
   }
-  /* El Sable Láser del Menú */
   nav::after {
     content: '';
     position: absolute;
@@ -249,14 +248,13 @@
   .author-info p { font-size: 0.85rem; font-weight: 600; }
   .author-info span { font-size: 0.75rem; color: var(--text-dim); }
 
-  /* FOOTER CON SABLE DE LUZ ROJO SUPERIOR (Lado Oscuro) */
+  /* FOOTER CON SABLE DE LUZ ROJO SUPERIOR */
   footer {
     background: #07080a;
     border-top: 1px solid rgba(255,255,255,0.05);
     position: relative;
     padding-top: 2rem;
   }
-  /* El Sable Láser del Footer */
   footer::before {
     content: '';
     position: absolute;
@@ -295,21 +293,19 @@
 </style>
 </head>
 <body>
-  <body>
+
 <script>
   (function() {
     var passwordCorrecta = "BarGaudi2010.sa"; 
     var intento = prompt("Acceso exclusivo para Bar Gaudí. Introduce la clave de la demo:");
     
     if (intento !== passwordCorrecta) {
-      alert("Clave incorrecta. Access denegado.");
+      alert("Clave incorrecta. Acceso denegado.");
       document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:20vh; font-family:sans-serif;'>Acceso Restringido - Versión de Demostración</h1>";
       window.stop();
     }
   })();
 </script>
-
-<nav>
 
 <nav>
   <a href="#inicio" class="nav-logo">BAR GAUDÍ</a>

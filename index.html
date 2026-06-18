@@ -23,7 +23,6 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   
-  /* FONDO DE ESTRELLAS MEJORADO */
   body {
     background: var(--space);
     background-image: 
@@ -38,17 +37,19 @@
     font-size: 16px;
     line-height: 1.7;
     overflow-x: hidden;
+    display: block !important;  /* Forzamos bloque vertical absoluto */
   }
 
-  /* NAV CON SABLE DE LUZ AZUL INFERIOR */
+  /* NAV TOTALMENTE AISLADO */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(11,12,16,0.95);
     backdrop-filter: blur(12px);
     padding: 0 2rem;
-    display: flex;
+    display: flex !important;
+    flex-direction: row !important;
     align-items: center;
     justify-content: space-between;
     height: 66px;
@@ -72,7 +73,7 @@
     letter-spacing: 0.05em;
     text-decoration: none;
   }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; flex-direction: row; }
   .nav-links a {
     color: var(--text-muted);
     text-decoration: none;
@@ -91,14 +92,20 @@
     cursor: pointer;
   }
 
-  /* SECTIONS */
-  section { position: relative; z-index: 1; }
+  /* SECTIONS OBLIGATORIAMENTE EN BLOQUE VERTICAL */
+  section { 
+    position: relative; 
+    z-index: 1; 
+    display: block !important; 
+    clear: both;
+    width: 100% !important;
+  }
 
   /* HERO */
   #inicio {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+    display: flex !important;
+    flex-direction: column !important;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -111,7 +118,7 @@
     background: radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.1) 0%, transparent 60%);
     z-index: 0;
   }
-  .hero-content { position: relative; z-index: 1; max-width: 800px; }
+  .hero-content { position: relative; z-index: 1; max-width: 800px; width: 100%; }
   .hero-eyebrow {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.75rem;
@@ -177,7 +184,7 @@
   }
 
   /* BLOQUES GENERALES */
-  .section-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 5rem 2rem; width: 100%; }
   .section-label {
     font-family: 'Orbitron', sans-serif;
     font-size: 0.7rem;
@@ -226,16 +233,13 @@
   .tab-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1.5rem; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
   
-  /* ESTILOS DE TARJETA Y PRECIOS */
   .plato-card { background: var(--surface2); border: 1px solid rgba(255,255,255,0.05); border-radius: 8px; padding: 1.75rem; position: relative; }
   .plato-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 0.5rem; }
   .plato-card h4 { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; color: #fff; margin-bottom: 0; max-width: 75%; }
   .plato-card p { font-size: 0.88rem; color: var(--text-muted); }
   .plato-price { font-family: 'Orbitron', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--saber-blue); text-shadow: 0 0 5px var(--saber-blue); white-space: nowrap; }
   
-  /* Color rojo para las Burgers Imperiales */
   #tab-burgers .plato-price { color: var(--saber-red); text-shadow: 0 0 5px var(--saber-red); }
-  
   .popular-tag { position: absolute; top: -10px; right: 1rem; background: #0c0d12; border: 1px solid var(--saber-gold); color: var(--saber-gold); font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 3px; font-weight: 700; box-shadow: 0 0 8px rgba(255, 213, 79, 0.2); }
 
   /* OPINIONES */
@@ -254,6 +258,8 @@
     border-top: 1px solid rgba(255,255,255,0.05);
     position: relative;
     padding-top: 2rem;
+    display: block !important;
+    width: 100% !important;
   }
   footer::before {
     content: '';
@@ -282,8 +288,8 @@
 
   /* RESPONSIVE */
   @media (max-width: 768px) {
-    .nav-links { display: none; flex-direction: column; position: absolute; top: 66px; left: 0; right: 0; background: rgba(11,12,16,0.98); padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border); }
-    .nav-links.open { display: flex; }
+    .nav-links { display: none; flex-direction: column !important; position: absolute; top: 66px; left: 0; right: 0; background: rgba(11,12,16,0.98); padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border); }
+    .nav-links.open { display: flex !important; }
     .nav-toggle { display: block; }
     .local-grid { grid-template-columns: 1fr; gap: 2rem; }
     .local-img { order: -1; aspect-ratio: 16/9; }
